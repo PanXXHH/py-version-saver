@@ -1,0 +1,65 @@
+{
+  "name": "py-version-saver",
+  "displayName": "PyVersionSaver",
+  "description": "A Visual Studio Code extension for version control",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:python"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "PyVersionSaver",
+      "properties": {
+        "py-version-saver.versionsDirectory": {
+          "type": "string",
+          "default": ".versions",
+          "description": "版本存储的目录"
+        },
+        "py-version-saver.versionDigits": {
+          "type": "integer",
+          "default": 5,
+          "description": "版本号的位数"
+        },
+        "py-version-saver.keepVersions": {
+          "type": "integer",
+          "default": 9,
+          "description": "要保留的历史版本数量"
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-github-username/your-repository.git"
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "dependencies": {
+    "glob": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.77.0",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.36.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5"
+  }
+}
