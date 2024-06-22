@@ -1,5 +1,5 @@
 <p align="left">
-    &nbsp中文&nbsp ｜ <a href="..">English</a>&nbsp
+    &nbsp中文&nbsp ｜ <a href="https://github.com/PanXXHH/py-version-saver/">English</a>&nbsp
 </p>
 
 # PyVersionSaver - VSCode 扩展
