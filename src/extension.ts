@@ -13,23 +13,23 @@ class VersionControl {
         this.dirPath = dirPath;
         this.versionDigits = versionDigits;
         this.keepVersions = keepVersions;
-        this.currentVersion = null;
-        this.loadVersions(dirPath);
+        this.currentVersion = this.loadVersions(dirPath, versionDigits);
     }
 
-    loadVersions(dirPath: string) {
+    loadVersions(dirPath: string, versionDigits: number) {
         // 如果目录不存在，则创建它
         if (!fs.existsSync(dirPath)) {
             fs.mkdirSync(dirPath, { recursive: true });
         }
-        
-        const versionFiles = fs.readdirSync(dirPath).filter(fileName => /^(\d+\.)*\d+$/.test(fileName))
-            .filter(fileName => fileName.split('.').length === this.versionDigits);
+
+        const versionFiles = fs.readdirSync(dirPath).filter(fileName => /^\d+(\.\d)*$/.test(fileName))
+            .filter(fileName => fileName.split('.').length === versionDigits);
 
         if (versionFiles.length > 0) {
             versionFiles.sort((a, b) => {
                 const versionA = a.split('.').map(num => parseInt(num));
                 const versionB = b.split('.').map(num => parseInt(num));
+                console.log(versionA,versionB);
                 for (let i = 0; i < versionA.length; i++) {
                     if (versionA[i] !== versionB[i]) {
                         return versionA[i] - versionB[i];
@@ -37,8 +37,10 @@ class VersionControl {
                 }
                 return 0;
             });
-            this.currentVersion = versionFiles[versionFiles.length - 1];
+            return versionFiles[versionFiles.length - 1];
         }
+
+        return null; // 在没有找到符合条件的版本文件时返回 null
     }
 
     incrementVersion() {
@@ -141,16 +143,22 @@ async function onSave(document: vscode.TextDocument) {
     const versionsDirectory = path.join(workspaceFolderPath, config.get('versionsDirectory', '.versions'));
     const versionDigits = config.get('versionDigits', 3);
     const keepVersions = config.get('keepVersions', 9);
+    // 从配置中读取支持的扩展名和忽略规则
+    const supportedExtensions = config.get('supportedExtensions', ['.py', '.log']);
+    const ignorePatterns = config.get('ignore', ['.*']);
+
 
     const versionControl = new VersionControl(versionsDirectory, versionDigits, keepVersions);
     versionControl.incrementVersion();
 
-    const pyFiles = glob.sync("**/*.py", {
+    // 构建 glob 搜索模式字符串
+    const extensionsPattern = supportedExtensions.map(ext => `*${ext}`).join('|');
+    const selectedFiles = glob.sync(`**/+(${extensionsPattern})`, {
         cwd: workspaceFolderPath,
-        ignore: "**/.*", // Ignore hidden files and directories
+        ignore: ignorePatterns, // 使用配置中的忽略规则
     });
 
-    for (const file of pyFiles) {
+    for (const file of selectedFiles) {
         const fileContent = fs.readFileSync(path.join(workspaceFolderPath, file), 'utf8');
         const targetFileDirectory = path.join(versionControl.dirPath, versionControl.currentVersion!, path.dirname(file));
         const targetFilePath = path.join(targetFileDirectory, path.basename(file));
@@ -163,4 +171,4 @@ async function onSave(document: vscode.TextDocument) {
 }
 
 
-export function deactivate() {}
+export function deactivate() { }
