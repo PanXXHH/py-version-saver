@@ -1,5 +1,5 @@
 <p align="left">
-    &nbsp中文&nbsp ｜ <a href="README_CN.md">English</a>&nbsp
+    &nbsp中文&nbsp ｜ <a href="..">English</a>&nbsp
 </p>
 
 # PyVersionSaver - VSCode 扩展
