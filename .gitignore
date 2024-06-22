@@ -5,3 +5,4 @@ node_modules
 *.vsix
 .建设规划
 .textbox
+.previous
