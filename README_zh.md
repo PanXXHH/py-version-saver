@@ -1,3 +1,7 @@
+<p align="left">
+    &nbsp中文&nbsp ｜ <a href="README_CN.md">English</a>&nbsp
+</p>
+
 # PyVersionSaver - VSCode 扩展
 
 PyVersionSaver 是一款版本控制的 Visual Studio Code 扩展。每当你保存工作区中的文件时，它会自动创建一个新的版本，并保留指定数量的历史版本。

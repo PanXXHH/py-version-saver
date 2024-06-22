@@ -1,3 +1,8 @@
+<p align="left">
+    <a href="README_CN.md">中文</a>&nbsp ｜ &nbspEnglish&nbsp 
+</p>
+
+
 # PyVersionSaver - VSCode Extension
 
 PyVersionSaver is a version control extension for Visual Studio Code. Whenever you save a file in your workspace, it will automatically create a new version and retain a specified number of historical versions.
