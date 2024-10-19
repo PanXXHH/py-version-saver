@@ -19,10 +19,10 @@ __versions_directory = ".versions"
 VERSION = __get_latest_version(__versions_directory) #为空的化不指定，需手动获取最新版本
 LICENSE = "GPL-3.0"
 AUTHOR = "Xiaohui Pan"
-PROJECT_NAME = "20240809_MYLINK"
-PROJECT_ALIAS = "MYLINK"
+PROJECT_NAME = "PyVersionSaver"
+PROJECT_ALIAS = "py-version-saver"
 COPYRIGHT = "Copyright (C) 2024 PanXXHH <https://github.com/PanXXHH>"
-REPOSITORY_URL = "https://github.com/PanXXHH/20240809_MYLINK"
+REPOSITORY_URL = "https://github.com/PanXXHH/py-version-saver"
 # ORIGINAL_AUTHOR = "T3rry7f"
 # ORIGINAL_AUTHOR_URL = "https://github.com/T3rry7f"
 # ORIGINAL_VERSION = "1.0"
@@ -30,7 +30,6 @@ REPOSITORY_URL = "https://github.com/PanXXHH/20240809_MYLINK"
 GITHUB_NAME = "PanXXHH"
 
 
-# TARGET_PATHS = [r"Y:\\"]
-TARGET_PATHS = [r"G:\Program Data\ONEDRIVE\987384390\OneDrive",
-                r"F:\杂乱文件",
-                r"G:\Program Data\ownCloudData"]
+# TARGET_PATHS = [r"G:\Program Data\ONEDRIVE\987384390\OneDrive",
+#                 r"F:\杂乱文件",
+#                 r"G:\Program Data\ownCloudData"]
