@@ -1,8 +1,6 @@
+.*
+!.gitignore
 out
 dist
 node_modules
-.vscode-test/
 *.vsix
-.建设规划
-.testbox
-.previous
